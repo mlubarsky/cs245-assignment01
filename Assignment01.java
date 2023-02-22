@@ -195,6 +195,7 @@ public class Assignment01 {
 		       		searchTags(uniqueList, frequency);
 	       		}
 	       	} else if (input.equals("EXIT") || input.equals("exit")) { //exit program
+	       		System.out.println("Exited successfully.");
 	       		break;
 	       	}
 	       	
