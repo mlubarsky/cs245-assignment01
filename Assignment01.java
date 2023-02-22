@@ -194,7 +194,7 @@ public class Assignment01 {
 	       			System.out.println("None found with that count.");
 		       		searchTags(uniqueList, frequency);
 	       		}
-	       	} else if (input.equals("EXIT") || input.equals("exit")) { //exit program
+	       	} else if (input.equals("EXIT") || input.equals("exit")) { //exit the program
 	       		System.out.println("Exited successfully.");
 	       		break;
 	       	}
