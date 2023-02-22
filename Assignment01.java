@@ -32,6 +32,7 @@ public class Assignment01 {
 	    	int cnt = 0;
 	    	int count = 1;
 	    	int i = 0;
+	    	
 	    	while ((currentLine = reader.readLine()) != null) {
 	            line.add(currentLine.trim()); //adds line into a list
     			tag = line.get(cnt).split(","); //splits line into separate elements to get the tag
@@ -60,6 +61,7 @@ public class Assignment01 {
 		quickSort(tags, 0, tags.size() - 1);
 		uniqueList.add(tags.get(0));
 		frequency.add(count);
+		
 		for (int j = 0; j < tags.size() - 1; j++) {
 			if(tags.get(j).compareTo(tags.get(j + 1)) == 0) { //increment the frequency for that tag
 				count++;
@@ -70,11 +72,13 @@ public class Assignment01 {
 				frequency.add(count);
 				i++;
 			}
-		}		
+		}
+		
 		int[] highestFrequencies = {0, 0, 0};
 		String[] mostFrequentTags = {null, null, null};
 		int[] lowestFrequencies = {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE};
 		String[] leastFrequentTags = {null, null, null};
+		
 		for (int j = 0; j < uniqueList.size(); j++) {
 		    int freq = frequency.get(j);
 		    if (freq > highestFrequencies[0]) {
@@ -145,68 +149,68 @@ public class Assignment01 {
 	 * @return -> Tag with count or tags of a certain count
 	 */
 	public static void searchTags(List<String> uniqueList, List<Integer> frequency) {
-		
 		Scanner scnr = new Scanner(System.in); 
 		System.out.println("Search by Tag or Tag Count? (Enter T or C... or EXIT to exit):");
 		String input = scnr.nextLine();
-		boolean tagFlag = false;
-		boolean countFlag = false;
-		String tagToPrint = null;
-		int countToPrint = 0;
 		
-		while(!(input.equals("EXIT") || input.equals("exit"))) {
-	       	if (!(input.equals("T") || input.equals("C") ||
-	       		input.equals("t") || input.equals("c")|| 
-	       		input.equals("EXIT") || input.equals("exit"))) { //input validation
-	       		while (!(input.equals("T") || input.equals("C") ||
-	       	       		input.equals("t") || input.equals("c")|| 
-	       	       		input.equals("EXIT") || input.equals("exit"))) {
-	       			System.out.println("Invalid Input. Enter T or C or EXIT");
-	       			input = scnr.nextLine();
-	       		}
-	        } else if (input.equals("T") || input.equals("t")) { //search for tags
-	       		System.out.println("Tag to search for: ");
-	       		String tagToSearch = scnr.nextLine();
-	       		for (int i = 0; i < uniqueList.size() - 1; i++) {
-	       			if (tagToSearch.compareTo(uniqueList.get(i)) == 0) {
-	       				tagToPrint = uniqueList.get(i);
-	       				countToPrint = frequency.get(i);
-	       				tagFlag = true;
-	       			} 
-	       		}
-	       	} else if (input.equals("C") || input.equals("c")) { //search for count
-	       		System.out.println("Count to search for: ");
-	       		int countToSearch = scnr.nextInt();
-	       		if (countToSearch > 1000000000 || countToSearch < 0) { //input validation
-	       			while (countToSearch > 1000000000 || countToSearch < 0) {
-	       				System.out.println("Invalid input. Enter a number: ");
-		       			countToSearch = scnr.nextInt();
-	       			}
-	       		}
-	       		System.out.println("Tags with " + countToSearch + " occurences:");
-	       		for (int i = 0; i < uniqueList.size() - 1; i++) {
-	       			if(countToSearch == frequency.get(i)) {
-	       				countFlag = true;
-	       				System.out.println(uniqueList.get(i));
-	       			} 
-	       		}
-	       		if (countFlag == false) {
-	       			System.out.println("None found with that count.");
-		       		searchTags(uniqueList, frequency);
-	       		}
-	       	} else if (input.equals("EXIT") || input.equals("exit")) { //exit the program
-	       		System.out.println("Exited successfully.");
-	       		break;
-	       	}
-	       	
-	       	if (tagFlag == true) {
+       	if (!(input.equals("T") || input.equals("C") ||
+       		input.equals("t") || input.equals("c")|| 
+       		input.equals("EXIT") || input.equals("exit"))) { //input validation
+       		while (!(input.equals("T") || input.equals("C") ||
+       	       		input.equals("t") || input.equals("c")|| 
+       	       		input.equals("EXIT") || input.equals("exit"))) {
+       			System.out.println("Invalid Input. Enter T or C or EXIT");
+       			input = scnr.nextLine();
+       		}
+        } 
+       	if (input.equals("T") || input.equals("t")) { //search for tags
+       		System.out.println("Tag to search for: ");
+       		boolean tagFlag = false;
+       		String tagToPrint = null;
+       		int countToPrint = 0;
+       		String tagToSearch = scnr.nextLine();
+       		for (int i = 0; i < uniqueList.size() - 1; i++) {
+       			if (tagToSearch.compareTo(uniqueList.get(i)) == 0) {
+       				tagToPrint = uniqueList.get(i);
+       				countToPrint = frequency.get(i);
+       				tagFlag = true;
+       			} 
+       		}
+       		if (tagFlag == true) {
 	       		System.out.println("Tag \"" + tagToPrint + "\" occured " + countToPrint + " times.");
 	       		searchTags(uniqueList, frequency);
 	       	} else if (tagFlag == false){
 	       		System.out.println("Tag not found.");
 	       		searchTags(uniqueList, frequency);
-	       	} 
-		}
+	       	}
+       	} else if (input.equals("C") || input.equals("c")) { //search for count
+       		System.out.println("Count to search for: ");
+       		int countToSearch = scnr.nextInt();
+       		boolean countFlag = false;
+       		if (countToSearch > 1000000000 || countToSearch < 0) { //input validation
+       			while (countToSearch > 1000000000 || countToSearch < 0) {
+       				System.out.println("Invalid input. Enter a number: ");
+	       			countToSearch = scnr.nextInt();
+       			}
+       		}
+       		System.out.println("Tags with " + countToSearch + " occurences:");
+       		for (int i = 0; i < uniqueList.size() - 1; i++) {
+       			if(countToSearch == frequency.get(i)) {
+       				countFlag = true;
+       				System.out.println("* " + uniqueList.get(i));
+       			} 
+       		}
+       		if (countFlag == true) {
+       			searchTags(uniqueList, frequency);
+       		}
+       		else if (countFlag == false) {
+       			System.out.println("None found with that count.");
+	       		searchTags(uniqueList, frequency);
+       		}
+       	} else if (input.equals("EXIT") || input.equals("exit")) { //exit the program
+       		System.out.println("Exited successfully.");
+       		//break;
+       	}
 		scnr.close();
 	}
 
@@ -222,7 +226,6 @@ public class Assignment01 {
 			int p = partition(arr, bot, top);
 			quickSort(arr, bot, p - 1);
 			quickSort(arr, p + 1, top);
-			
 		}
 	}
 	
