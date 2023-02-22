@@ -256,7 +256,6 @@ public class Assignment01 {
 	public static void main(String[] args) {
 		//Replace string with args[0];
 		String file = "C:/Users/mluba/Downloads/tags.csv";
-		//String file = args[0];
 		List<String> tags = readFile(file);
 		System.out.println(" ==========================================");
 		frequencyTags(tags);
