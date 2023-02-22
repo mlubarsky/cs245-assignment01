@@ -29,7 +29,6 @@ public class Assignment01 {
 	    	String currentLine = null; //while there is content on the current line
 	    	System.out.println("Reading the data file...");
 	    	int i = 0;
-	    	
 	    	while ((currentLine = reader.readLine()) != null) {
 	            line.add(currentLine.trim()); //adds line into a list
     			tag = line.get(i).split(","); //splits line into separate elements to get the tag
@@ -57,7 +56,6 @@ public class Assignment01 {
 		quickSort(tags, 0, tags.size() - 1);
 		uniqueList.add(tags.get(0));
 		frequency.add(count);
-		
 		for (int j = 0; j < tags.size() - 1; j++) {
 			if(tags.get(j).compareTo(tags.get(j + 1)) == 0) { //increment the frequency for that tag
 				count++;
@@ -69,12 +67,10 @@ public class Assignment01 {
 				i++;
 			}
 		}
-		
 		int[] highestFrequencies = {0, 0, 0};
 		String[] mostFrequentTags = {null, null, null};
 		int[] lowestFrequencies = {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE};
 		String[] leastFrequentTags = {null, null, null};
-		
 		for (int j = 0; j < uniqueList.size(); j++) {
 		    int freq = frequency.get(j);
 		    if (freq > highestFrequencies[0]) {
@@ -148,7 +144,6 @@ public class Assignment01 {
 		Scanner scnr = new Scanner(System.in); 
 		System.out.println("Search by Tag or Tag Count? (Enter T or C... or EXIT to exit):");
 		String input = scnr.nextLine();
-		
        	if (!(input.equals("T") || input.equals("C") ||
        		input.equals("t") || input.equals("c")|| 
        		input.equals("EXIT") || input.equals("exit"))) { //input validation
