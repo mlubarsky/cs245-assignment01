@@ -23,21 +23,17 @@ public class Assignment01 {
 		Path p2 = Path.of(file);
 		List<String> line = new ArrayList<String>();
 		List<String> tags = new ArrayList<String>();
-		int[] frequency = new int[10000000];
 		String[] tag = null;
 		
 	    try (BufferedReader reader = Files.newBufferedReader(p2, StandardCharsets.UTF_8)) {
 	    	String currentLine = null; //while there is content on the current line
 	    	System.out.println("Reading the data file...");
-	    	int cnt = 0;
-	    	int count = 1;
 	    	int i = 0;
 	    	
 	    	while ((currentLine = reader.readLine()) != null) {
 	            line.add(currentLine.trim()); //adds line into a list
-    			tag = line.get(cnt).split(","); //splits line into separate elements to get the tag
-    			cnt++;
-    			frequency[i] = count;
+    			tag = line.get(i).split(","); //splits line into separate elements to get the tag
+    			i++;
     			tags.add(tag[2]);
 	        }
 	        reader.close();
@@ -265,6 +261,7 @@ public class Assignment01 {
 	public static void main(String[] args) {
 		//Replace string with args[0];
 		String file = "C:/Users/mluba/Downloads/tags.csv";
+		//String file = args[0];
 		List<String> tags = readFile(file);
 		System.out.println(" ==========================================");
 		frequencyTags(tags);
