@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -167,7 +168,7 @@ public class Assignment01 {
        				tagFlag = true;
        			} 
        		}
-       		if (tagFlag == true) {
+       		if (tagFlag == true) { //print tags
 	       		System.out.println("Tag \"" + tagToPrint + "\" occured " + countToPrint + " times.");
 	       		searchTags(uniqueList, frequency);
 	       	} else if (tagFlag == false){
@@ -176,27 +177,32 @@ public class Assignment01 {
 	       	}
        	} else if (input.equals("C") || input.equals("c")) { //search for count
        		System.out.println("Count to search for: ");
-       		int countToSearch = scnr.nextInt();
-       		boolean countFlag = false;
-       		if (countToSearch > 1000000000 || countToSearch < 0) { //input validation
-       			while (countToSearch > 1000000000 || countToSearch < 0) {
-       				System.out.println("Invalid input. Enter a number: ");
-	       			countToSearch = scnr.nextInt();
-       			}
-       		}
-       		System.out.println("Tags with " + countToSearch + " occurences:");
-       		for (int i = 0; i < uniqueList.size() - 1; i++) {
-       			if(countToSearch == frequency.get(i)) {
-       				countFlag = true;
-       				System.out.println("* " + uniqueList.get(i));
-       			} 
-       		}
-       		if (countFlag == true) {
+       		try {
+       			int countToSearch = scnr.nextInt();
+	       		boolean countFlag = false;
+	       		if (countToSearch > 1000000000 || countToSearch < 0) { //input validation
+	       			while (countToSearch > 1000000000 || countToSearch < 0) {
+	       				System.out.println("Invalid input. Enter a number: ");
+		       			countToSearch = scnr.nextInt();
+	       			}
+	       		}
+	       		System.out.println("Tags with " + countToSearch + " occurences:");
+	       		for (int i = 0; i < uniqueList.size() - 1; i++) {
+	       			if(countToSearch == frequency.get(i)) {
+	       				countFlag = true;
+	       				System.out.println("* " + uniqueList.get(i));
+	       			} 
+	       		}
+	       		if (countFlag == true) {
+	       			searchTags(uniqueList, frequency);
+	       		}
+	       		else if (countFlag == false) {
+	       			System.out.println("None found with that count.");
+		       		searchTags(uniqueList, frequency);
+	       		} 
+       		} catch (InputMismatchException ex) {
+       			System.out.println("Invalid input. Enter a number: ");
        			searchTags(uniqueList, frequency);
-       		}
-       		else if (countFlag == false) {
-       			System.out.println("None found with that count.");
-	       		searchTags(uniqueList, frequency);
        		}
        	} else if (input.equals("EXIT") || input.equals("exit")) { //exit the program
        		System.out.println("Exited successfully.");
