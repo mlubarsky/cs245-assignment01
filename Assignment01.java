@@ -201,7 +201,7 @@ public class Assignment01 {
 		       		searchTags(uniqueList, frequency);
 	       		} 
        		} catch (InputMismatchException ex) {
-       			System.out.println("Invalid input. Enter a number: ");
+       			System.out.println("Invalid input.");
        			searchTags(uniqueList, frequency);
        		}
        	} else if (input.equals("EXIT") || input.equals("exit")) { //exit the program
