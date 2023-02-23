@@ -145,9 +145,9 @@ public class Assignment01 {
 		Scanner scnr = new Scanner(System.in); 
 		System.out.println("Search by Tag or Tag Count? (Enter T or C... or EXIT to exit):");
 		String input = scnr.nextLine();
-       	if (!(input.equals("T") || input.equals("C") ||
+       	if (!(input.equals("T") || input.equals("C") || //input validation
        		input.equals("t") || input.equals("c")|| 
-       		input.equals("EXIT") || input.equals("exit"))) { //input validation
+       		input.equals("EXIT") || input.equals("exit"))) { 
        		while (!(input.equals("T") || input.equals("C") ||
        	       		input.equals("t") || input.equals("c")|| 
        	       		input.equals("EXIT") || input.equals("exit"))) {
@@ -206,7 +206,6 @@ public class Assignment01 {
        		}
        	} else if (input.equals("EXIT") || input.equals("exit")) { //exit the program
        		System.out.println("Exited successfully.");
-       		//break;
        	}
 		scnr.close();
 	}
